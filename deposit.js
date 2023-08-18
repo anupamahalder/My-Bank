@@ -19,6 +19,11 @@ document.getElementById('btn-deposit').addEventListener('click',function(){
 
     //Step-4: add numbers to set the total deposit
     const currentDepositTotal = previousDepositTotal + newDepositAmount;
+    if(isNaN(currentDepositTotal)){
+        alert("Please enter valid amount!");
+        depositField.value ='';
+        return;
+    }
 
     //set the deposit total
     depositTotalElement.innerText = currentDepositTotal;
