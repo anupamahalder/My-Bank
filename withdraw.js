@@ -15,18 +15,30 @@ document.getElementById('btn-withdraw').addEventListener('click',function(){
     const withdrawField = document.getElementById('withdraw-field');
     const newWithdrawAmountString = withdrawField.value;
     const newWithdrawAmount = parseFloat(newWithdrawAmountString);
+    if(isNaN(newWithdrawAmount)){
+        alert('Please provide valid number!');
+        withdrawField.value = '';
+        return;
+    }
     //Step3
     const WithdrawTotalElement = document.getElementById('withdraw-display');
     const previousWithdrawTotalString = WithdrawTotalElement.innerText;
     const previousWithdrawTotal = parseFloat(previousWithdrawTotalString);
-    //Step4
-    const currentWithdrawalTotal = previousWithdrawTotal + newWithdrawAmount;
-    //Step4.1
-    WithdrawTotalElement.innerText = currentWithdrawalTotal;
+    
     //Step-5
     const balanceTotalElement = document.getElementById('balance-display');
     const previousBalanceTotalString = balanceTotalElement.innerText;
     const previousBalanceTotal = parseFloat(previousBalanceTotalString);
+    
+    if(newWithdrawAmount > previousBalanceTotal){
+        alert('You do not have sufficient balance in your account!');
+        withdrawField.value = '';
+        return;
+    }
+    //Step4
+    const currentWithdrawalTotal = previousWithdrawTotal + newWithdrawAmount;
+    //Step4.1
+    WithdrawTotalElement.innerText = currentWithdrawalTotal;
     //Step-6
     const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
     //Step-6.1
