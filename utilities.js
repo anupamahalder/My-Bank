@@ -27,12 +27,20 @@ document.getElementById('btn-deposit').addEventListener('click',function(){
     //2. get the value from the element
     //3. convert string value to a number
     const newDepositAmount = getInputValueById('deposit-field');
+    if(newDepositAmount < 0){
+        alert("Deposited amount cannot be negative number!");
+        return;
+    }
     //Step-2
     //1. get previous deposit total by id
     const previousDepositTotal = getTextElementValueById('deposit-display');
     //Step-3
     //1. calculate new deposit total
     const currentDepositTotal = previousDepositTotal+newDepositAmount;
+    if(isNaN(currentDepositTotal)){
+        alert("Please enter valid amount!");
+        return;
+    }
     //step-4
     //1. set the deposit total value
     setTextElementValueById('deposit-display',currentDepositTotal);
@@ -53,9 +61,17 @@ document.getElementById('btn-withdraw').addEventListener('click',function(){
     //Step-2
     //1. get previous Withdraw total by id
     const previousWithdrawTotal = getTextElementValueById('withdraw-display');
+    if(newWithdrawAmount < 0){
+        alert("Withdrawal amount cannot be negative number!");
+        return;
+    }
     //Step-3
     //1. calculate new deposit total
     const currentWithdrawTotal = previousWithdrawTotal+newWithdrawAmount;
+    if(isNaN(currentWithdrawTotal)){
+        alert("Please enter valid amount!");
+        return;
+    }
     //step-4
     //1. set the deposit total value
     setTextElementValueById('withdraw-display',currentWithdrawTotal);
@@ -63,6 +79,10 @@ document.getElementById('btn-withdraw').addEventListener('click',function(){
     //1. get previous balance by using the function
     const previousBalanceTotal = getTextElementValueById('balance-display');
     const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
+    if(newBalanceTotal < 0){
+        alert('You donot have sufficient balance!');
+        return;
+    }
     //2. set the balance
     setTextElementValueById('balance-display',newBalanceTotal);
 })
