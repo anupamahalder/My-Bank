@@ -19,7 +19,7 @@ document.getElementById('btn-withdraw').addEventListener('click',function(){
         alert('Please provide valid number!');
         withdrawField.value = '';
         return;
-    }g
+    }
     //Step3
     const WithdrawTotalElement = document.getElementById('withdraw-display');
     const previousWithdrawTotalString = WithdrawTotalElement.innerText;
